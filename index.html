@@ -5,9 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradients BG</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="mindora-branding">Mindora</div>
+    <div class="center-container">
+        <div class="question-text">Hey! What's your name?</div>
+        <input type="text" class="name-input" placeholder="Enter your name" />
+    </div>
+    <script>
+        const text = "Hey! What's your name?";
+        let i = 0;
+        const speed = 80;
+        function typeWriter() {
+          if (i < text.length) {
+            document.getElementById("typed-text").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        }
+        typeWriter();
+      </script>
+    
     <div class="gradient-bg">
         <svg>
             <filter id="goo">

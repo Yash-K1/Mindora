@@ -1,5 +1,5 @@
 html, body {
-  font-family: "Dongle", sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -164,10 +164,83 @@ html, body {
   position: absolute;
   top: 20px;
   left: 30px;
-  font-size: 36px;
+  font-size: 56px;
   color: white;
   opacity: 0.8;
   z-index: 1000;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100;
+}
+
+.question-text {
+  font-size: 48px;
+  color: white;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.name-input {
+  padding: 10px 20px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  width: 300px;
+  max-width: 80%;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100;
+  animation: fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.question-text {
+  font-size: 48px;
+  color: white;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.name-input {
+  padding: 12px 20px;
+  font-size: 24px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  width: 320px;
+  max-width: 90%;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.name-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /*# sourceMappingURL=style.css.map */
