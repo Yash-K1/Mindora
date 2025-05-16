@@ -2,6 +2,10 @@ html, body {
   font-family: 'Quicksand', sans-serif;
   margin: 0;
   padding: 0;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  min-height: 100vh;
+  opacity: 0;
+  animation: fadeInPage 0.3s ease-out forwards;
 }
 
 .text-container {
@@ -73,18 +77,21 @@ html, body {
 .gradient-bg {
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
   top: 0;
   left: 0;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 
   svg {
     position: fixed;
-    top:0;
-    left:0;
-    width: 0;
-    height: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .gradients-container {
@@ -180,48 +187,27 @@ html, body {
   color: white;
   opacity: 0.8;
   z-index: 1000;
+  pointer-events: none;
 }
 
 .center-container {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 100;
-}
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+  box-sizing: border-box;
 
-.question-text {
-  font-size: 48px;
-  color: white;
-  opacity: 0.9;
-  margin-bottom: 20px;
-}
-
-.name-input {
-  padding: 10px 20px;
-  font-size: 24px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  width: 300px;
-  max-width: 80%;
-}
-
-.center-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 100;
-  animation: fadeIn 1.5s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+  .input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
   }
 }
 
@@ -230,6 +216,32 @@ html, body {
   color: white;
   opacity: 0.9;
   margin-bottom: 20px;
+  transition: opacity 0.6s ease;
+
+  &.fade-out {
+    animation: fadeOutScale 0.6s ease forwards;
+    will-change: opacity, transform;
+  }
+
+  &.welcome-fade-in {
+    animation: fadeInScale 0.8s ease forwards;
+    will-change: opacity, transform;
+  }
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  opacity: 1;
+  transition: opacity 0.6s ease-out;
+
+  &.fade-out {
+    animation: fadeOutScale 0.6s ease-out forwards;
+    will-change: opacity, transform;
+  }
 }
 
 .name-input {
@@ -243,6 +255,63 @@ html, body {
   max-width: 90%;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 1s;
+  opacity: 0;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.submit-button {
+  padding: 12px 20px;
+  font-size: 24px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 1s;
+  opacity: 0;
+  pointer-events: auto;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.fade-out {
+  opacity: 0 !important;
 }
 
 .name-input::placeholder {
@@ -254,4 +323,43 @@ html, body {
   border-color: white;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.25);
+}
+
+html.loading {
+  .gradient-bg {
+    opacity: 0;
+  }
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Enhanced fade animations
+@keyframes fadeOutScale {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
